@@ -1,6 +1,6 @@
-# Sang's Assistant
+# AI Assistants
 
-A Python-based assistant using OpenAI's API.
+Python-based assistants using OpenAI's API.
 
 ## Setup
 
@@ -13,14 +13,13 @@ A Python-based assistant using OpenAI's API.
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/SangsAssistant.git
-cd SangsAssistant
+git clone git@github.com:Amplify-Federal-Labs/ai-assistants.git
+cd ai-assistants
 ```
 
 2. Install dependencies:
-```bash
-uv pip install -e .
-```
+
+No need to install dependencies. uv will automatically install dependencies when run.
 
 ### Configuration
 
