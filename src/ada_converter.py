@@ -7,9 +7,18 @@ class AdaConverter:
     def __init__(self):
         """Initialize the AdaConverter with the appropriate system prompt."""
         system_prompt = (
-            "You are a helpful code convertion agent. You will convert code written in Ada "
-            "programming language into python. You will try to replicate the logic flow as "
-            "much as possible. You will also write unit tests to verify those logic flows."
+            "You are a helpful code convertion agent. "
+            "You will convert code written in Ada programming language into python. "
+            "You will firt describe the logic within Ada code. "
+            "You will then write unit tests."
+            "You will then convert the code into Python, while maintaining overall structure as much as possible. "
+            "You will return the response in the following format: "
+            "# Logc"
+            "<logic wihtin the original Ada code>"
+            "# Unit Test"
+            "<Unit Tests written in Python based on the extracted logc>"
+            "# Python Code"
+            "<Resulting Python Code>"
         )
         
         self.client = OpenAIClient(system_prompt=system_prompt)
