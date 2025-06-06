@@ -1,4 +1,4 @@
-from src.api import OpenAIClient
+from app.services.openai_client import OpenAIClient
 
 
 class AdaConverter:

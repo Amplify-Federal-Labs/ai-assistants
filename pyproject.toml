@@ -1,14 +1,18 @@
 [project]
 name = "sangsassistant"
 version = "0.1.0"
-description = "Add your description here"
+description = "AI Assistant with Ada to Python conversion capabilities"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "click>=8.2.1",
+    "flask>=3.0.0",
     "openai>=1.84.0",
     "python-dotenv>=1.1.0",
 ]
+
+[project.scripts]
+ada-api = "app.main:main"
 
 [dependency-groups]
 dev = [

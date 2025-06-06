@@ -1,7 +1,7 @@
 import os
 from unittest.mock import Mock, patch, call, ANY
 import pytest
-from src.api import OpenAIClient
+from app.services.openai_client import OpenAIClient
 from openai import OpenAI
 
 def test_openai_client_initialization_with_env_var(monkeypatch):
@@ -70,7 +70,7 @@ def test_send_message(monkeypatch):
         {"role": "user", "content": message}
     ]
     
-    with patch('src.api.OpenAI') as mock_openai_class:
+    with patch('app.services.openai_client.OpenAI') as mock_openai_class:
         mock_openai = Mock()
         mock_openai_class.return_value = mock_openai
         mock_chat = Mock()

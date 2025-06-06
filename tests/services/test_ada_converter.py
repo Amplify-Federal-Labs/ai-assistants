@@ -1,19 +1,28 @@
 import unittest
 from unittest.mock import patch, MagicMock
-from src.ada_converter import AdaConverter
+from app.services.ada_converter import AdaConverter
 
 
 class TestAdaConverter(unittest.TestCase):
     """Test cases for AdaConverter class."""
     
-    @patch('src.ada_converter.OpenAIClient')
+    @patch('app.services.ada_converter.OpenAIClient')
     def test_ada_converter_initializes_with_correct_system_prompt(self, mock_openai_client):
         """Test that AdaConverter initializes OpenAIClient with the correct system prompt."""
         # Arrange
         expected_system_prompt = (
-            "You are a helpful code convertion agent. You will convert code written in Ada "
-            "programming language into python. You will try to replicate the logic flow as "
-            "much as possible. You will also write unit tests to verify those logic flows."
+            "You are a helpful code convertion agent. "
+            "You will convert code written in Ada programming language into python. "
+            "You will firt describe the logic within Ada code. "
+            "You will then write unit tests."
+            "You will then convert the code into Python, while maintaining overall structure as much as possible. "
+            "You will return the response in the following format: "
+            "# Logc"
+            "<logic wihtin the original Ada code>"
+            "# Unit Test"
+            "<Unit Tests written in Python based on the extracted logc>"
+            "# Python Code"
+            "<Resulting Python Code>"
         )
         
         # Act
@@ -22,7 +31,7 @@ class TestAdaConverter(unittest.TestCase):
         # Assert
         mock_openai_client.assert_called_once_with(system_prompt=expected_system_prompt)
 
-    @patch('src.ada_converter.OpenAIClient')
+    @patch('app.services.ada_converter.OpenAIClient')
     def test_convert_method_sends_correct_prompt_to_openai_client(self, mock_openai_client):
         """Test that convert method sends the correct prompt format to OpenAI client."""
         # Arrange
