@@ -6,11 +6,11 @@ from unittest.mock import patch
 
 
 def test_convert_endpoint_file_upload_success(flask_test_client, sample_converter_response, ada_file_upload):
-    """Test successful conversion via POST /convert endpoint with file upload."""
+    """Test successful conversion via POST /api/v1/convert endpoint with file upload."""
     with patch('app.api.v1.endpoints.convert.ada_converter') as mock_converter:
         mock_converter.convert.return_value = sample_converter_response
         
-        response = flask_test_client.post('/convert',
+        response = flask_test_client.post('/api/v1/convert',
                                         data={'ada_file': (ada_file_upload, 'hello.adb')},
                                         content_type='multipart/form-data')
         
@@ -22,8 +22,8 @@ def test_convert_endpoint_file_upload_success(flask_test_client, sample_converte
 
 
 def test_convert_endpoint_missing_file(flask_test_client):
-    """Test POST /convert endpoint with missing file."""
-    response = flask_test_client.post('/convert',
+    """Test POST /api/v1/convert endpoint with missing file."""
+    response = flask_test_client.post('/api/v1/convert',
                                     data={},
                                     content_type='multipart/form-data')
     
@@ -34,11 +34,11 @@ def test_convert_endpoint_missing_file(flask_test_client):
 
 
 def test_convert_endpoint_empty_file(flask_test_client):
-    """Test POST /convert endpoint with empty file."""
+    """Test POST /api/v1/convert endpoint with empty file."""
     from io import BytesIO
     empty_file = BytesIO(b'')
     
-    response = flask_test_client.post('/convert',
+    response = flask_test_client.post('/api/v1/convert',
                                     data={'ada_file': (empty_file, 'empty.adb')},
                                     content_type='multipart/form-data')
     

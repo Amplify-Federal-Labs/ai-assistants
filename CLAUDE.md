@@ -51,7 +51,7 @@ uv pip install -e .
 
 ### Running Tests
 ```bash
-uv run pytest
+uv run python -m pytest
 ```
 
 ### Running the API Server
@@ -61,9 +61,9 @@ PYTHONPATH=. uv run python app/main.py
 
 ### Running Tests by Module
 ```bash
-uv run pytest tests/core/        # Core module tests
-uv run pytest tests/api/         # API tests
-uv run pytest tests/services/    # Service tests
+uv run python -m pytest tests/core/        # Core module tests
+uv run python -m pytest tests/api/         # API tests
+uv run python -m pytest tests/services/    # Service tests
 ```
 
 ## Architecture

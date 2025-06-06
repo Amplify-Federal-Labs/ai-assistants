@@ -14,9 +14,6 @@ def create_app() -> Flask:
     # Register blueprints
     app.register_blueprint(api_v1)
     
-    # Legacy route for backward compatibility
-    from app.api.v1.endpoints.convert import convert_ada_file
-    app.add_url_rule('/convert', 'legacy_convert', convert_ada_file, methods=['POST'])
     
     return app
 
