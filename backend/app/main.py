@@ -12,12 +12,19 @@ def create_app() -> Flask:
     app = Flask(__name__)
     app.config['MAX_CONTENT_LENGTH'] = settings.max_file_size
     
-    # Enable CORS for frontend development
+    # Enable CORS for frontend
+    cors_origins = [
+        "http://localhost:5173",  # Local development
+        "http://localhost:3000",  # Alternative local port
+        "https://*.netlify.app",  # Netlify deployments
+        # Add your production frontend URL here
+    ]
+    
     CORS(app, 
-         origins="*", 
+         origins=cors_origins if not settings.debug else "*",
          methods=['GET', 'POST', 'OPTIONS'],
          allow_headers=['Content-Type', 'Authorization'],
-         supports_credentials=True)
+         supports_credentials=False)
     
     # Register blueprints
     app.register_blueprint(api_v1)

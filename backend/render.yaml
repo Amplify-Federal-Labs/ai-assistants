@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: ada-converter-api
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app.main:create_app() --bind 0.0.0.0:$PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11"
+      - key: OPENAI_API_KEY
+        sync: false  # This will need to be set manually in Render dashboard
+      - key: API_HOST
+        value: "0.0.0.0"
+      - key: DEBUG
+        value: "False"
