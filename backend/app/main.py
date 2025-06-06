@@ -13,7 +13,11 @@ def create_app() -> Flask:
     app.config['MAX_CONTENT_LENGTH'] = settings.max_file_size
     
     # Enable CORS for frontend development
-    CORS(app, origins=['http://localhost:5173'])
+    CORS(app, 
+         origins="*", 
+         methods=['GET', 'POST', 'OPTIONS'],
+         allow_headers=['Content-Type', 'Authorization'],
+         supports_credentials=True)
     
     # Register blueprints
     app.register_blueprint(api_v1)

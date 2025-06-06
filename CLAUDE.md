@@ -84,6 +84,8 @@ uv run python -m pytest tests/api/         # API tests
 uv run python -m pytest tests/services/    # Service tests
 ```
 
+**Note:** Backend runs on port 8000 to avoid conflicts with macOS AirPlay Receiver (port 5000).
+
 ### Frontend Setup & Development
 ```bash
 cd frontend
@@ -149,6 +151,10 @@ Full-stack application with React TypeScript frontend and Flask Python backend f
 2. **Frontend**: React dev server with hot reload (port 5173)
 3. **Integration**: Vite proxies API calls from frontend to backend
 4. **Testing**: Separate test suites for frontend and backend components
+
+**Port Configuration:**
+- Backend uses port 8000 to avoid macOS AirPlay Receiver conflicts (port 5000)
+- Frontend proxy automatically forwards `/api` requests to `localhost:8000`
 
 ### API Key Configuration
 The application expects `OPENAI_API_KEY` environment variable or `.env` file. Configuration is managed through `backend/app/core/config.py` with validation.

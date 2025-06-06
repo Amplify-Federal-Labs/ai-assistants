@@ -15,7 +15,7 @@ class Settings:
         
         # API Settings
         self.api_host: str = os.getenv("API_HOST", "127.0.0.1")
-        self.api_port: int = int(os.getenv("API_PORT", "5000"))
+        self.api_port: int = int(os.getenv("API_PORT", "8000"))
         self.debug: bool = os.getenv("DEBUG", "True").lower() == "true"
         
         # File upload settings

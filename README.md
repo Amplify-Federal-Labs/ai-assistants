@@ -11,6 +11,8 @@ Full-stack web application for converting Ada code to Python with explanations a
 - Node.js 18+ and npm
 - OpenAI API key
 
+**macOS Users:** Port 5000 is used by AirPlay Receiver. This app uses port 8000 to avoid conflicts.
+
 ### Installation
 
 1. Clone the repository:
@@ -76,6 +78,8 @@ Start both the backend API and frontend development server:
 cd backend
 PYTHONPATH=. uv run python app/main.py
 ```
+
+> **Note:** We use port 8000 to avoid conflicts with macOS AirPlay Receiver which uses port 5000.
 
 **Terminal 2 - Frontend Dev Server (Port 5173):**
 ```bash
@@ -149,6 +153,17 @@ ai-assistants/
 - TanStack Query (API state management)
 - React Hook Form (Form handling)
 - Vitest + React Testing Library (Testing)
+
+### Port Configuration
+
+- **Backend API**: `localhost:8000` (avoids macOS AirPlay Receiver conflict)
+- **Frontend Dev Server**: `localhost:5173` (Vite default)
+- **API Proxy**: Frontend automatically proxies `/api/*` requests to backend
+
+**Troubleshooting macOS Port Conflicts:**
+If you encounter "Address already in use" errors on port 5000, it's likely due to macOS AirPlay Receiver. You can:
+1. Use port 8000 (recommended - already configured)
+2. Disable AirPlay Receiver: System Preferences → Sharing → Uncheck "AirPlay Receiver"
 
 ## License
 
