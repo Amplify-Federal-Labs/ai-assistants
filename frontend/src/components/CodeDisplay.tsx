@@ -18,12 +18,21 @@ export const CodeDisplay: React.FC<CodeDisplayProps> = ({ result }) => {
     }
   };
 
+  const formatLogicText = (text: string) => {
+    return text.split('\n').map((line, index) => (
+      <React.Fragment key={index}>
+        {line}
+        {index < text.split('\n').length - 1 && <br />}
+      </React.Fragment>
+    ));
+  };
+
   return (
     <div>
       <section>
         <h3>Logic Explanation</h3>
         <div>
-          {result.logic}
+          {formatLogicText(result.logic)}
         </div>
       </section>
 
