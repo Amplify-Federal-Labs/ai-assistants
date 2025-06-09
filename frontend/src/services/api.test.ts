@@ -28,7 +28,7 @@ describe('ApiClient', () => {
 
       const result = await ApiClient.convertAdaFile(file)
 
-      expect(fetch).toHaveBeenCalledWith('/api/v1/convert', {
+      expect(fetch).toHaveBeenCalledWith('http://localhost:8000/api/v1/convert', {
         method: 'POST',
         body: expect.any(FormData)
       })

@@ -10,6 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Test-Driven Development**: Every feature starts with a failing test, minimal implementation, then refactor
 - **Concise Communication**: Keep responses short and focused (fewer than 4 lines unless detail is requested)
 - **Task Management**: Use TodoWrite/TodoRead tools frequently to track progress and give user visibility
+- **Test After Changes**: ALWAYS run all unit tests after each code change to ensure nothing breaks
 
 ### Coding Standards
 - Use type hints for all function signatures

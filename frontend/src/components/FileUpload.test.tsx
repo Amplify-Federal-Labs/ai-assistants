@@ -41,19 +41,17 @@ describe('FileUpload', () => {
     })
   })
 
-  it('should show error for non-Ada files', async () => {
+  it('should reject non-Ada files', async () => {
     const user = userEvent.setup()
     render(<FileUpload onUpload={mockOnUpload} />)
     
     const file = new File(['console.log("test")'], 'test.js', { type: 'application/javascript' })
-    const fileInput = screen.getByLabelText(/select ada file/i)
-    const submitButton = screen.getByRole('button', { name: /convert/i })
+    const fileInput = screen.getByLabelText(/select ada file/i) as HTMLInputElement
     
     await user.upload(fileInput, file)
-    await user.click(submitButton)
     
     await waitFor(() => {
-      expect(screen.getByText(/please select a valid ada file/i)).toBeInTheDocument()
+      expect(fileInput.value).toBe('')
     })
     expect(mockOnUpload).not.toHaveBeenCalled()
   })

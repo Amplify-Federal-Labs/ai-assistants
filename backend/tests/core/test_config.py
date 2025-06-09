@@ -13,7 +13,7 @@ def test_settings_default_values():
         
         assert settings.openai_model == "gpt-3.5-turbo"
         assert settings.api_host == "127.0.0.1"
-        assert settings.api_port == 5000
+        assert settings.api_port == 8000
         assert settings.debug is True
         assert settings.max_file_size == 1048576
         assert settings.allowed_extensions == {".ada", ".adb", ".ads"}

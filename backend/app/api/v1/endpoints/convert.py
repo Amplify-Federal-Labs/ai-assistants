@@ -1,4 +1,4 @@
-from flask import request, jsonify
+from flask import request, jsonify, make_response
 from app.services.ada_converter import AdaConverter
 from app.core.exceptions import FileUploadError, AdaConverterError
 import re
@@ -38,19 +38,25 @@ def parse_converter_response(response: str) -> dict:
 def convert_ada_file():
     """Convert Ada code to Python via REST API using file upload."""
     if 'ada_file' not in request.files:
-        return jsonify({"error": "ada_file is required"}), 400
+        response = make_response(jsonify({"error": "ada_file is required"}), 400)
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        return response
     
     file = request.files['ada_file']
     
     if file.filename == '':
-        return jsonify({"error": "ada_file is required"}), 400
+        response = make_response(jsonify({"error": "ada_file is required"}), 400)
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        return response
     
     try:
         # Read the file content
         ada_code = file.read().decode('utf-8')
         
         if not ada_code.strip():
-            return jsonify({"error": "File is empty"}), 400
+            response = make_response(jsonify({"error": "File is empty"}), 400)
+            response.headers['Access-Control-Allow-Origin'] = '*'
+            return response
         
         # Convert using AdaConverter
         converter_response = ada_converter.convert(ada_code)
@@ -58,9 +64,15 @@ def convert_ada_file():
         # Parse the structured response
         parsed_response = parse_converter_response(converter_response)
         
-        return jsonify(parsed_response), 200
+        response = make_response(jsonify(parsed_response), 200)
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        return response
         
     except UnicodeDecodeError:
-        return jsonify({"error": "File must be valid UTF-8 text"}), 400
+        response = make_response(jsonify({"error": "File must be valid UTF-8 text"}), 400)
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        return response
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        response = make_response(jsonify({"error": str(e)}), 500)
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        return response
