@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => {
       port: 5173,
       proxy: {
         '/api': {
-          target: env.BACKEND_URL || 'http://localhost:8000',
+          target: process.env.BACKEND_URL || 'http://localhost:8000',
           changeOrigin: true,
         },
       },
