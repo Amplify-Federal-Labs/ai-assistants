@@ -14,8 +14,6 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onUpload, isLoading = fa
   const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm<FormData>();
   const [fileError, setFileError] = useState<string>('');
   
-  const selectedFile = watch('ada_file')?.[0];
-
   const validateFile = (file: File) => {
     const validExtensions = ['.ada', '.adb'];
     const fileExtension = file.name.toLowerCase().slice(file.name.lastIndexOf('.'));
