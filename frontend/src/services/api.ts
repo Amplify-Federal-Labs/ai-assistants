@@ -1,6 +1,6 @@
 import { ConversionResponse, ApiError } from '../types/api';
 
-const API_BASE_URL = '/api/v1';
+const API_BASE_URL = `${import.meta.env.PROD ? 'https://ai-assistants-5ejt.onrender.com' : ''}/api/v1`;
 
 export class ApiClient {
   static async convertAdaFile(file: File): Promise<ConversionResponse> {
