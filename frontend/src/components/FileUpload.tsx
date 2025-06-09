@@ -11,7 +11,7 @@ interface FormData {
 }
 
 export const FileUpload: React.FC<FileUploadProps> = ({ onUpload, isLoading = false }) => {
-  const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm<FormData>();
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm<FormData>();
   const [fileError, setFileError] = useState<string>('');
   
   const validateFile = (file: File) => {
